@@ -29,7 +29,7 @@ const getInitialShieldsState = () => [
   {
     id: 'light',
     name: "Light Shield",
-    mitigation: 0.25,
+    mitigation: 0.4,
     shieldColorClass: "bg-light-shield",
     borderColorClass: "border-light-shield",
     maxShieldHealth: 40,
@@ -41,7 +41,7 @@ const getInitialShieldsState = () => [
   {
     id: 'medium',
     name: "Medium Shield",
-    mitigation: 0.50,
+    mitigation: 0.425,
     shieldColorClass: "bg-medium-shield",
     borderColorClass: "border-medium-shield",
     maxShieldHealth: 70,
@@ -53,7 +53,7 @@ const getInitialShieldsState = () => [
   {
     id: 'heavy',
     name: "Heavy Shield",
-    mitigation: 0.75,
+    mitigation: 0.525,
     shieldColorClass: "bg-heavy-shield",
     borderColorClass: "border-heavy-shield",
     maxShieldHealth: 80,
@@ -87,8 +87,6 @@ export default function Home() {
           damageToShield = incomingDamage;
           damageToLife = incomingDamage * shield.mitigation;
         } else {
-          // When shield is down, the original prompt implies life takes full damage.
-          // The new prompt is ambiguous here. I'll assume full damage to life.
           damageToShield = 0;
           damageToLife = incomingDamage;
         }
