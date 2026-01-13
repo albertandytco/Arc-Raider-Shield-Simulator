@@ -35,14 +35,13 @@ const ShieldCard: FC<ShieldCardProps> = ({
   mitigation,
   slowness,
 }) => {
-  const titleColorClass = shieldColorClass.replace('bg-', 'text-') + " saturate-150";
   const shieldProgress = maxShieldHealth > 0 ? (shieldHealth / maxShieldHealth) * 100 : 0;
 
   return (
     <Card className={`w-full border-2 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1`}>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className={`text-2xl font-bold ${titleColorClass}`}>{name}</CardTitle>
+          <CardTitle className="text-2xl font-bold text-white">{name}</CardTitle>
           <div className={`px-3 py-1 text-sm font-semibold rounded-full border ${rarityColorClasses}`}>
             {rarity}
           </div>
