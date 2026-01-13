@@ -30,8 +30,8 @@ const getInitialShieldsState = () => [
     id: 'light',
     name: "Light Shield",
     mitigation: 0.4,
-    shieldColorClass: "bg-light-shield",
-    borderColorClass: "border-light-shield",
+    shieldColorClass: "bg-blue-500",
+    borderColorClass: "border-blue-500",
     maxShieldHealth: 40,
     shieldHealth: 40,
     playerHealth: 100,
@@ -42,8 +42,8 @@ const getInitialShieldsState = () => [
     id: 'medium',
     name: "Medium Shield",
     mitigation: 0.425,
-    shieldColorClass: "bg-medium-shield",
-    borderColorClass: "border-medium-shield",
+    shieldColorClass: "bg-blue-500",
+    borderColorClass: "border-blue-500",
     maxShieldHealth: 70,
     shieldHealth: 70,
     playerHealth: 100,
@@ -54,8 +54,8 @@ const getInitialShieldsState = () => [
     id: 'heavy',
     name: "Heavy Shield",
     mitigation: 0.525,
-    shieldColorClass: "bg-heavy-shield",
-    borderColorClass: "border-heavy-shield",
+    shieldColorClass: "bg-blue-500",
+    borderColorClass: "border-blue-500",
     maxShieldHealth: 80,
     shieldHealth: 80,
     playerHealth: 100,
@@ -84,8 +84,8 @@ export default function Home() {
         let damageToLife = 0;
 
         if (shield.shieldHealth > 0) {
-          damageToShield = incomingDamage;
-          damageToLife = incomingDamage * shield.mitigation;
+          damageToShield = incomingDamage * shield.mitigation;
+          damageToLife = incomingDamage * (1 - shield.mitigation);
         } else {
           damageToShield = 0;
           damageToLife = incomingDamage;
