@@ -94,7 +94,7 @@ export default function Home() {
 
         if (shield.shieldHealth > 0) {
           damageToShield = incomingDamage;
-          damageToLife = incomingDamage * shield.mitigation;
+          damageToLife = incomingDamage * (1 - shield.mitigation);
         } else {
           damageToShield = 0;
           damageToLife = incomingDamage;
@@ -185,6 +185,21 @@ export default function Home() {
           />
         ))}
       </div>
+
+      <Card className="mt-8 shadow-md">
+        <CardContent className="p-6">
+          <h3 className="text-xl font-bold text-blue-400 mb-4">COMO FUNCIONA</h3>
+          <p className="text-muted-foreground mb-4">
+            Em Arc Raiders, o escudo mitiga o dano -- Não bloqueia. Você sempre toma dano na vida, mesmo com escudo cheio.
+          </p>
+          <div className="bg-muted p-3 rounded-lg mb-4">
+            <p className="text-blue-300 font-mono text-center">Dano na vida = Dano x (1 - Mitigação)</p>
+          </div>
+          <p className="text-muted-foreground">
+            Exemplo: Bigorna (40 dmg) + Escudo Leve (40% Mitig.) = 24 de dano na vida.
+          </p>
+        </CardContent>
+      </Card>
     </main>
   );
 }
