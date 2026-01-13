@@ -84,7 +84,7 @@ export default function Home() {
         let damageToLife = 0;
 
         if (shield.shieldHealth > 0) {
-          damageToShield = incomingDamage * shield.mitigation;
+          damageToShield = incomingDamage;
           damageToLife = incomingDamage * (1 - shield.mitigation);
         } else {
           damageToShield = 0;
