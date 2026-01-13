@@ -45,7 +45,7 @@ const getInitialShieldsState = () => [
     rarity: "Incomum",
     rarityColorClasses: "bg-green-900/80 text-green-300 border-green-700",
     mitigation: 0.4,
-    shieldColorClass: "bg-light-shield",
+    shieldColorClass: "bg-primary",
     borderColorClass: "border-transparent",
     maxShieldHealth: 40,
     shieldHealth: 40,
@@ -60,7 +60,7 @@ const getInitialShieldsState = () => [
     rarity: "Raro",
     rarityColorClasses: "bg-blue-900/80 text-blue-300 border-blue-700",
     mitigation: 0.425,
-    shieldColorClass: "bg-medium-shield",
+    shieldColorClass: "bg-primary",
     borderColorClass: "border-transparent",
     maxShieldHealth: 70,
     shieldHealth: 70,
@@ -75,7 +75,7 @@ const getInitialShieldsState = () => [
     rarity: "Épico",
     rarityColorClasses: "bg-purple-900/80 text-purple-300 border-purple-700",
     mitigation: 0.525,
-    shieldColorClass: "bg-heavy-shield",
+    shieldColorClass: "bg-primary",
     borderColorClass: "border-transparent",
     maxShieldHealth: 80,
     shieldHealth: 80,
@@ -110,7 +110,7 @@ export default function Home() {
 
         if (shield.shieldHealth > 0) {
           damageToShield = incomingDamage;
-          damageToLife = incomingDamage * shield.mitigation;
+          damageToLife = incomingDamage * (1 - shield.mitigation);
         } else {
           damageToShield = 0;
           damageToLife = incomingDamage;
