@@ -3,9 +3,12 @@
 import type { FC } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
 
 type ShieldCardProps = {
   name: string;
+  rarity: string;
+  rarityColorClasses: string;
   shieldHealth: number;
   maxShieldHealth: number;
   playerHealth: number;
@@ -17,6 +20,8 @@ type ShieldCardProps = {
 
 const ShieldCard: FC<ShieldCardProps> = ({
   name,
+  rarity,
+  rarityColorClasses,
   shieldHealth,
   maxShieldHealth,
   playerHealth,
@@ -31,7 +36,12 @@ const ShieldCard: FC<ShieldCardProps> = ({
   return (
     <Card className={`w-full ${borderColorClass} border-2 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1`}>
       <CardHeader>
-        <CardTitle className={`text-2xl font-bold ${titleColorClass}`}>{name}</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className={`text-2xl font-bold ${titleColorClass}`}>{name}</CardTitle>
+          <div className={`px-3 py-1 text-sm font-semibold rounded-full border ${rarityColorClasses}`}>
+            {rarity}
+          </div>
+        </div>
       </CardHeader>
       <CardContent className="space-y-6">
         <div>

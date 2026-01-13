@@ -29,9 +29,11 @@ const getInitialShieldsState = () => [
   {
     id: 'light',
     name: "Escudo Leve",
+    rarity: "Incomum",
+    rarityColorClasses: "bg-green-900/80 text-green-300 border-green-700",
     mitigation: 0.4,
-    shieldColorClass: "bg-blue-500",
-    borderColorClass: "border-blue-500",
+    shieldColorClass: "bg-light-shield",
+    borderColorClass: "border-light-shield",
     maxShieldHealth: 40,
     shieldHealth: 40,
     playerHealth: 100,
@@ -41,9 +43,11 @@ const getInitialShieldsState = () => [
   {
     id: 'medium',
     name: "Escudo Médio",
+    rarity: "Raro",
+    rarityColorClasses: "bg-blue-900/80 text-blue-300 border-blue-700",
     mitigation: 0.425,
-    shieldColorClass: "bg-blue-500",
-    borderColorClass: "border-blue-500",
+    shieldColorClass: "bg-medium-shield",
+    borderColorClass: "border-medium-shield",
     maxShieldHealth: 70,
     shieldHealth: 70,
     playerHealth: 100,
@@ -53,9 +57,11 @@ const getInitialShieldsState = () => [
   {
     id: 'heavy',
     name: "Escudo Pesado",
+    rarity: "Épico",
+    rarityColorClasses: "bg-purple-900/80 text-purple-300 border-purple-700",
     mitigation: 0.525,
-    shieldColorClass: "bg-blue-500",
-    borderColorClass: "border-blue-500",
+    shieldColorClass: "bg-heavy-shield",
+    borderColorClass: "border-heavy-shield",
     maxShieldHealth: 80,
     shieldHealth: 80,
     playerHealth: 100,
@@ -85,7 +91,7 @@ export default function Home() {
 
         if (shield.shieldHealth > 0) {
           damageToShield = incomingDamage;
-          damageToLife = incomingDamage * (1 - shield.mitigation);
+          damageToLife = incomingDamage * shield.mitigation;
         } else {
           damageToShield = 0;
           damageToLife = incomingDamage;
@@ -95,13 +101,14 @@ export default function Home() {
         const newPlayerHealth = Math.max(0, shield.playerHealth - damageToLife);
         
         const actualDamageToShield = shield.shieldHealth - newShieldHealth;
+        const actualDamageToLife = shield.playerHealth - newPlayerHealth;
 
         return {
           ...shield,
           shieldHealth: newShieldHealth,
           playerHealth: newPlayerHealth,
           shieldDamageTaken: shield.shieldDamageTaken + actualDamageToShield,
-          lifeDamageTaken: shield.lifeDamageTaken + damageToLife,
+          lifeDamageTaken: shield.lifeDamageTaken + actualDamageToLife,
         };
       })
     );
@@ -155,6 +162,8 @@ export default function Home() {
           <ShieldCard
             key={shield.id}
             name={shield.name}
+            rarity={shield.rarity}
+            rarityColorClasses={shield.rarityColorClasses}
             shieldHealth={shield.shieldHealth}
             maxShieldHealth={shield.maxShieldHealth}
             playerHealth={shield.playerHealth}
