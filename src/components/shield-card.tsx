@@ -28,11 +28,10 @@ const ProgressBarWithDividers: FC<{
   const numDividers = Math.floor(max / 10);
   return (
     <div className="relative">
-      <Progress value={value} indicatorClassName={indicatorClassName} />
+      <Progress value={value} indicatorClassName={indicatorClassName} className="rounded-none" />
       <div className="absolute inset-0 flex items-center">
-        {Array.from({ length: numDividers }).map((_, i) => {
-          if (i === 0) return null;
-          const position = (i * 10 / max) * 100;
+        {Array.from({ length: numDividers -1 }).map((_, i) => {
+          const position = ((i + 1) * 10 / max) * 100;
           return (
             <div
               key={i}
@@ -116,11 +115,11 @@ const ShieldCard: FC<ShieldCardProps> = ({
           />
         </div>
         <div className="grid grid-cols-2 gap-4 text-center pt-4 border-t mt-4">
-          <div>
+          <div className="rounded-lg p-2 bg-gradient-to-br from-blue-900/50 to-transparent">
             <p className="text-sm text-muted-foreground">Dano ao Escudo</p>
             <p className="text-2xl font-bold font-mono">{shieldDamageTaken.toFixed(0)}</p>
           </div>
-          <div>
+          <div className="rounded-lg p-2 bg-gradient-to-br from-red-900/50 to-transparent">
             <p className="text-sm text-muted-foreground">Dano à Vida</p>
             <p className="text-2xl font-bold font-mono">{lifeDamageTaken.toFixed(0)}</p>
           </div>
