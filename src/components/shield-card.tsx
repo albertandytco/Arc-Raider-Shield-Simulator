@@ -117,11 +117,11 @@ const ShieldCard: FC<ShieldCardProps> = ({
         <div className="grid grid-cols-2 gap-4 text-center pt-4 border-t mt-4">
           <div className="rounded-lg p-2 bg-gradient-to-br from-blue-900/50 to-transparent">
             <p className="text-sm text-muted-foreground">Dano ao Escudo</p>
-            <p className="text-2xl font-bold font-mono">{shieldDamageTaken.toFixed(0)}</p>
+            <p className="text-2xl font-bold font-mono">{shieldDamageTaken.toFixed(1)}</p>
           </div>
           <div className="rounded-lg p-2 bg-gradient-to-br from-red-900/50 to-transparent">
             <p className="text-sm text-muted-foreground">Dano à Vida</p>
-            <p className="text-2xl font-bold font-mono">{lifeDamageTaken.toFixed(0)}</p>
+            <p className="text-2xl font-bold font-mono">{lifeDamageTaken.toFixed(1)}</p>
           </div>
         </div>
       </CardContent>
