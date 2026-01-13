@@ -3,7 +3,6 @@
 import type { FC } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
 type ShieldCardProps = {
@@ -31,8 +30,9 @@ const ProgressBarWithDividers: FC<{
     <div className="relative">
       <Progress value={value} indicatorClassName={indicatorClassName} />
       <div className="absolute inset-0 flex items-center">
-        {Array.from({ length: numDividers - 1 }).map((_, i) => {
-          const position = ((i + 1) * 10) / max * 100;
+        {Array.from({ length: numDividers }).map((_, i) => {
+          if (i === 0) return null;
+          const position = (i * 10 / max) * 100;
           return (
             <div
               key={i}
@@ -112,7 +112,7 @@ const ShieldCard: FC<ShieldCardProps> = ({
           <ProgressBarWithDividers 
             value={playerHealth}
             max={100}
-            indicatorClassName="bg-destructive/80"
+            indicatorClassName="bg-white"
           />
         </div>
         <div className="grid grid-cols-2 gap-4 text-center pt-4 border-t mt-4">
