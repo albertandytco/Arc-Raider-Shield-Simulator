@@ -36,25 +36,25 @@ const ShieldCard: FC<ShieldCardProps> = ({
       <CardContent className="space-y-6">
         <div>
           <div className="flex justify-between items-end mb-1">
-            <span className="text-sm font-medium text-foreground">Shield</span>
+            <span className="text-sm font-medium text-foreground">Escudo</span>
             <span className="text-sm font-mono text-muted-foreground">{shieldHealth.toFixed(0)} / {maxShieldHealth}</span>
           </div>
           <Progress value={shieldProgress} indicatorClassName={shieldColorClass} />
         </div>
         <div>
           <div className="flex justify-between items-end mb-1">
-            <span className="text-sm font-medium text-foreground">Life</span>
+            <span className="text-sm font-medium text-foreground">Vida</span>
             <span className="text-sm font-mono text-muted-foreground">{playerHealth.toFixed(0)} / 100</span>
           </div>
           <Progress value={playerHealth} indicatorClassName="bg-destructive/80" />
         </div>
         <div className="grid grid-cols-2 gap-4 text-center pt-4 border-t mt-4">
           <div>
-            <p className="text-sm text-muted-foreground">Shield Dmg Taken</p>
+            <p className="text-sm text-muted-foreground">Dano ao Escudo</p>
             <p className="text-2xl font-bold font-mono">{shieldDamageTaken.toFixed(0)}</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Life Dmg Taken</p>
+            <p className="text-sm text-muted-foreground">Dano à Vida</p>
             <p className="text-2xl font-bold font-mono">{lifeDamageTaken.toFixed(0)}</p>
           </div>
         </div>

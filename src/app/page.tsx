@@ -28,7 +28,7 @@ const WEAPONS = [
 const getInitialShieldsState = () => [
   {
     id: 'light',
-    name: "Light Shield",
+    name: "Escudo Leve",
     mitigation: 0.4,
     shieldColorClass: "bg-blue-500",
     borderColorClass: "border-blue-500",
@@ -40,7 +40,7 @@ const getInitialShieldsState = () => [
   },
   {
     id: 'medium',
-    name: "Medium Shield",
+    name: "Escudo Médio",
     mitigation: 0.425,
     shieldColorClass: "bg-blue-500",
     borderColorClass: "border-blue-500",
@@ -52,7 +52,7 @@ const getInitialShieldsState = () => [
   },
   {
     id: 'heavy',
-    name: "Heavy Shield",
+    name: "Escudo Pesado",
     mitigation: 0.525,
     shieldColorClass: "bg-blue-500",
     borderColorClass: "border-blue-500",
@@ -116,22 +116,22 @@ export default function Home() {
   return (
     <main className="container mx-auto p-4 sm:p-6 lg:p-8 font-body">
       <div className="flex flex-col items-center text-center mb-8">
-        <h1 className="text-4xl lg:text-5xl font-extrabold font-headline tracking-tight mb-2">Shield Assault</h1>
-        <p className="text-lg text-muted-foreground">Damage Simulation Tool</p>
+        <h1 className="text-4xl lg:text-5xl font-extrabold font-headline tracking-tight mb-2">Assalto ao Escudo</h1>
+        <p className="text-lg text-muted-foreground">Ferramenta de Simulação de Dano</p>
       </div>
 
       <Card className="mb-8 p-4 sm:p-6 shadow-md">
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <div className="w-full sm:w-auto flex-grow max-w-xs">
-            <Label htmlFor="weapon-select" className="text-sm font-medium mb-2 block">Weapon</Label>
+            <Label htmlFor="weapon-select" className="text-sm font-medium mb-2 block">Arma</Label>
             <Select value={selectedWeapon} onValueChange={setSelectedWeapon}>
               <SelectTrigger id="weapon-select" className="w-full">
-                <SelectValue placeholder="Select a weapon" />
+                <SelectValue placeholder="Selecione uma arma" />
               </SelectTrigger>
               <SelectContent>
                 {WEAPONS.map(weapon => (
                   <SelectItem key={weapon.name} value={weapon.name}>
-                    {weapon.name} ({weapon.damage} dmg)
+                    {weapon.name} ({weapon.damage} dano)
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -140,11 +140,11 @@ export default function Home() {
 
           <div className="flex gap-2 self-end">
             <Button size="lg" onClick={handleFire} disabled={allTargetsDefeated}>
-              <Flame className="mr-2 h-5 w-5" /> Fire
+              <Flame className="mr-2 h-5 w-5" /> Atirar
             </Button>
 
             <Button size="lg" variant="outline" onClick={handleReset}>
-              <RotateCcw className="mr-2 h-5 w-5" /> Reset
+              <RotateCcw className="mr-2 h-5 w-5" /> Reiniciar
             </Button>
           </div>
         </div>
