@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Flame, RotateCcw } from "lucide-react";
 import ShieldCard from "@/components/shield-card";
@@ -75,10 +75,13 @@ type ShieldState = ReturnType<typeof getInitialShieldsState>;
 export default function Home() {
   const [shields, setShields] = useState<ShieldState>(getInitialShieldsState());
   const [selectedWeapon, setSelectedWeapon] = useState(WEAPONS[0].name);
+  const [shotCount, setShotCount] = useState(0);
 
   const handleFire = useCallback(() => {
     const weapon = WEAPONS.find(w => w.name === selectedWeapon);
     if (!weapon) return;
+
+    setShotCount(prevCount => prevCount + 1);
 
     const incomingDamage = weapon.damage;
 
@@ -116,6 +119,7 @@ export default function Home() {
 
   const handleReset = useCallback(() => {
     setShields(getInitialShieldsState());
+    setShotCount(0);
   }, []);
 
   const allTargetsDefeated = shields.every(s => s.playerHealth <= 0);
@@ -143,6 +147,13 @@ export default function Home() {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+
+          <div className="text-center">
+            <Label className="text-sm font-medium">Tiros</Label>
+            <div className="text-3xl font-bold font-mono p-2 rounded-lg bg-muted min-w-[60px]">
+              {shotCount}
+            </div>
           </div>
 
           <div className="flex gap-2 self-end">
