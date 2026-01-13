@@ -32,7 +32,8 @@ const getInitialShieldsState = () => [
     mitigation: 0.25,
     shieldColorClass: "bg-light-shield",
     borderColorClass: "border-light-shield",
-    shieldHealth: 100,
+    maxShieldHealth: 40,
+    shieldHealth: 40,
     playerHealth: 100,
     shieldDamageTaken: 0,
     lifeDamageTaken: 0,
@@ -43,7 +44,8 @@ const getInitialShieldsState = () => [
     mitigation: 0.50,
     shieldColorClass: "bg-medium-shield",
     borderColorClass: "border-medium-shield",
-    shieldHealth: 100,
+    maxShieldHealth: 70,
+    shieldHealth: 70,
     playerHealth: 100,
     shieldDamageTaken: 0,
     lifeDamageTaken: 0,
@@ -54,7 +56,8 @@ const getInitialShieldsState = () => [
     mitigation: 0.75,
     shieldColorClass: "bg-heavy-shield",
     borderColorClass: "border-heavy-shield",
-    shieldHealth: 100,
+    maxShieldHealth: 80,
+    shieldHealth: 80,
     playerHealth: 100,
     shieldDamageTaken: 0,
     lifeDamageTaken: 0,
@@ -81,26 +84,25 @@ export default function Home() {
         let damageToLife = 0;
 
         if (shield.shieldHealth > 0) {
-          const mitigatedPortion = incomingDamage * shield.mitigation;
-          const unmitigatedPortion = incomingDamage * (1 - shield.mitigation);
-
-          const absorbedByShield = Math.min(shield.shieldHealth, mitigatedPortion);
-          const overflowDamage = mitigatedPortion - absorbedByShield;
-
-          damageToShield = absorbedByShield;
-          damageToLife = unmitigatedPortion + overflowDamage;
+          damageToShield = incomingDamage;
+          damageToLife = incomingDamage * shield.mitigation;
         } else {
+          // When shield is down, the original prompt implies life takes full damage.
+          // The new prompt is ambiguous here. I'll assume full damage to life.
+          damageToShield = 0;
           damageToLife = incomingDamage;
         }
 
         const newShieldHealth = Math.max(0, shield.shieldHealth - damageToShield);
         const newPlayerHealth = Math.max(0, shield.playerHealth - damageToLife);
+        
+        const actualDamageToShield = shield.shieldHealth - newShieldHealth;
 
         return {
           ...shield,
           shieldHealth: newShieldHealth,
           playerHealth: newPlayerHealth,
-          shieldDamageTaken: shield.shieldDamageTaken + damageToShield,
+          shieldDamageTaken: shield.shieldDamageTaken + actualDamageToShield,
           lifeDamageTaken: shield.lifeDamageTaken + damageToLife,
         };
       })
@@ -156,6 +158,7 @@ export default function Home() {
             key={shield.id}
             name={shield.name}
             shieldHealth={shield.shieldHealth}
+            maxShieldHealth={shield.maxShieldHealth}
             playerHealth={shield.playerHealth}
             shieldDamageTaken={shield.shieldDamageTaken}
             lifeDamageTaken={shield.lifeDamageTaken}

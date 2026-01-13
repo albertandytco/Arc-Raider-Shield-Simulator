@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 type ShieldCardProps = {
   name: string;
   shieldHealth: number;
+  maxShieldHealth: number;
   playerHealth: number;
   shieldDamageTaken: number;
   lifeDamageTaken: number;
@@ -17,6 +18,7 @@ type ShieldCardProps = {
 const ShieldCard: FC<ShieldCardProps> = ({
   name,
   shieldHealth,
+  maxShieldHealth,
   playerHealth,
   shieldDamageTaken,
   lifeDamageTaken,
@@ -24,6 +26,7 @@ const ShieldCard: FC<ShieldCardProps> = ({
   borderColorClass,
 }) => {
   const titleColorClass = shieldColorClass.replace('bg-', 'text-') + " saturate-150";
+  const shieldProgress = maxShieldHealth > 0 ? (shieldHealth / maxShieldHealth) * 100 : 0;
 
   return (
     <Card className={`w-full ${borderColorClass} border-2 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1`}>
@@ -34,9 +37,9 @@ const ShieldCard: FC<ShieldCardProps> = ({
         <div>
           <div className="flex justify-between items-end mb-1">
             <span className="text-sm font-medium text-foreground">Shield</span>
-            <span className="text-sm font-mono text-muted-foreground">{shieldHealth.toFixed(0)} / 100</span>
+            <span className="text-sm font-mono text-muted-foreground">{shieldHealth.toFixed(0)} / {maxShieldHealth}</span>
           </div>
-          <Progress value={shieldHealth} indicatorClassName={shieldColorClass} />
+          <Progress value={shieldProgress} indicatorClassName={shieldColorClass} />
         </div>
         <div>
           <div className="flex justify-between items-end mb-1">
