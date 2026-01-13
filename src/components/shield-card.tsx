@@ -36,9 +36,10 @@ const ShieldCard: FC<ShieldCardProps> = ({
   slowness,
 }) => {
   const shieldProgress = maxShieldHealth > 0 ? (shieldHealth / maxShieldHealth) * 100 : 0;
+  const shieldSegments = maxShieldHealth / 10;
 
   return (
-    <Card className={`w-full border-2 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1`}>
+    <Card className={`w-full border-2 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${borderColorClass}`}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-2xl font-bold text-white">{name}</CardTitle>
@@ -68,14 +69,14 @@ const ShieldCard: FC<ShieldCardProps> = ({
             <span className="text-sm font-medium text-foreground">Escudo</span>
             <span className="text-sm font-mono text-muted-foreground">{shieldHealth.toFixed(0)} / {maxShieldHealth}</span>
           </div>
-          <Progress value={shieldProgress} indicatorClassName={shieldColorClass} />
+          <Progress value={shieldProgress} indicatorClassName={shieldColorClass} segments={shieldSegments > 1 ? shieldSegments : 0} />
         </div>
         <div>
           <div className="flex justify-between items-end mb-1">
             <span className="text-sm font-medium text-foreground">Vida</span>
             <span className="text-sm font-mono text-muted-foreground">{playerHealth.toFixed(0)} / 100</span>
           </div>
-          <Progress value={playerHealth} indicatorClassName="bg-destructive/80" />
+          <Progress value={playerHealth} indicatorClassName="bg-destructive/80" segments={10} />
         </div>
         <div className="grid grid-cols-2 gap-4 text-center pt-4 border-t mt-4">
           <div>
