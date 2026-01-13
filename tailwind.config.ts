@@ -55,6 +55,9 @@ export default {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
+        'light-shield': 'hsl(var(--light-shield))',
+        'medium-shield': 'hsl(var(--medium-shield))',
+        'heavy-shield': 'hsl(var(--heavy-shield))',
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',
           foreground: 'hsl(var(--sidebar-foreground))',
