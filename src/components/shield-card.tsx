@@ -4,6 +4,7 @@ import type { FC } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 
 type ShieldCardProps = {
   name: string;
@@ -16,6 +17,8 @@ type ShieldCardProps = {
   lifeDamageTaken: number;
   shieldColorClass: string;
   borderColorClass: string;
+  mitigation: number;
+  slowness: number;
 };
 
 const ShieldCard: FC<ShieldCardProps> = ({
@@ -29,6 +32,8 @@ const ShieldCard: FC<ShieldCardProps> = ({
   lifeDamageTaken,
   shieldColorClass,
   borderColorClass,
+  mitigation,
+  slowness,
 }) => {
   const titleColorClass = shieldColorClass.replace('bg-', 'text-') + " saturate-150";
   const shieldProgress = maxShieldHealth > 0 ? (shieldHealth / maxShieldHealth) * 100 : 0;
@@ -44,6 +49,21 @@ const ShieldCard: FC<ShieldCardProps> = ({
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
+        <div className="grid grid-cols-3 gap-2 text-center text-xs">
+          <div>
+            <span className="font-bold text-base">{maxShieldHealth}</span>
+            <span className="text-muted-foreground block">cargas</span>
+          </div>
+          <div>
+            <span className="font-bold text-base">{(mitigation * 100).toFixed(1)}%</span>
+            <span className="text-muted-foreground block">mitig.</span>
+          </div>
+          <div>
+            <span className="font-bold text-base">{slowness}%</span>
+            <span className="text-muted-foreground block">lent.</span>
+          </div>
+        </div>
+        <Separator />
         <div>
           <div className="flex justify-between items-end mb-1">
             <span className="text-sm font-medium text-foreground">Escudo</span>
