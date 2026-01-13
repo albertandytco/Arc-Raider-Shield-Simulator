@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'Assalto ao Escudo',
-  description: 'Uma ferramenta de simulação de dano para pontos de escudo e vida.',
+  title: 'Simulador de Escudos',
+  description: 'Arc Raiders - Visualize o Dano em Tempo Real',
 };
 
 export default function RootLayout({

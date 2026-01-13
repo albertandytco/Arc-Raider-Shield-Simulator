@@ -116,8 +116,8 @@ export default function Home() {
   return (
     <main className="container mx-auto p-4 sm:p-6 lg:p-8 font-body">
       <div className="flex flex-col items-center text-center mb-8">
-        <h1 className="text-4xl lg:text-5xl font-extrabold font-headline tracking-tight mb-2">Assalto ao Escudo</h1>
-        <p className="text-lg text-muted-foreground">Ferramenta de Simulação de Dano</p>
+        <h1 className="text-4xl lg:text-5xl font-extrabold font-headline tracking-tight mb-2">Simulador de Escudos</h1>
+        <p className="text-lg text-muted-foreground">Arc Raiders - Visualize o Dano em Tempo Real</p>
       </div>
 
       <Card className="mb-8 p-4 sm:p-6 shadow-md">
