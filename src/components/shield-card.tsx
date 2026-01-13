@@ -21,6 +21,31 @@ type ShieldCardProps = {
   slowness: number;
 };
 
+const ProgressBarWithDividers: FC<{
+  value: number;
+  max: number;
+  indicatorClassName: string;
+}> = ({ value, max, indicatorClassName }) => {
+  const numDividers = Math.floor(max / 10);
+  return (
+    <div className="relative">
+      <Progress value={value} indicatorClassName={indicatorClassName} />
+      <div className="absolute inset-0 flex items-center justify-between px-px">
+        {Array.from({ length: numDividers - 1 }).map((_, i) => (
+          <div
+            key={i}
+            className="h-full w-px bg-background/50"
+            style={{
+              transform: `translateX(${(i + 1) * (100 / numDividers)}%)`,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
 const ShieldCard: FC<ShieldCardProps> = ({
   name,
   rarity,
@@ -68,14 +93,22 @@ const ShieldCard: FC<ShieldCardProps> = ({
             <span className="text-sm font-medium text-foreground">Escudo</span>
             <span className="text-sm font-mono text-muted-foreground">{shieldHealth.toFixed(0)} / {maxShieldHealth}</span>
           </div>
-          <Progress value={shieldProgress} indicatorClassName={shieldColorClass} />
+          <ProgressBarWithDividers 
+            value={shieldProgress}
+            max={maxShieldHealth}
+            indicatorClassName={shieldColorClass}
+          />
         </div>
         <div>
           <div className="flex justify-between items-end mb-1">
             <span className="text-sm font-medium text-foreground">Vida</span>
             <span className="text-sm font-mono text-muted-foreground">{playerHealth.toFixed(0)} / 100</span>
           </div>
-          <Progress value={playerHealth} indicatorClassName="bg-destructive/80" />
+          <ProgressBarWithDividers 
+            value={playerHealth}
+            max={100}
+            indicatorClassName="bg-destructive/80"
+          />
         </div>
         <div className="grid grid-cols-2 gap-4 text-center pt-4 border-t mt-4">
           <div>
