@@ -30,16 +30,21 @@ const ProgressBarWithDividers: FC<{
   return (
     <div className="relative">
       <Progress value={value} indicatorClassName={indicatorClassName} />
-      <div className="absolute inset-0 flex items-center justify-between px-px">
-        {Array.from({ length: numDividers - 1 }).map((_, i) => (
-          <div
-            key={i}
-            className="h-full w-px bg-background/50"
-            style={{
-              transform: `translateX(${(i + 1) * (100 / numDividers)}%)`,
-            }}
-          />
-        ))}
+      <div className="absolute inset-0 flex items-center">
+        {Array.from({ length: numDividers - 1 }).map((_, i) => {
+          const position = ((i + 1) * 10) / max * 100;
+          return (
+            <div
+              key={i}
+              className="h-full w-px bg-background/50"
+              style={{
+                position: 'absolute',
+                left: `${position}%`,
+                transform: 'translateX(-50%)',
+              }}
+            />
+          );
+        })}
       </div>
     </div>
   );
