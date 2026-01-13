@@ -218,6 +218,12 @@ export default function Home() {
           </p>
         </CardContent>
       </Card>
+      
+      <footer className="text-center mt-12 mb-4">
+        <p className="text-sm font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-600 bg-clip-text text-transparent drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
+          Feito por Alt_BR, diretamente de uma IA igual ao site do HADOMANCER s2
+        </p>
+      </footer>
     </main>
   );
 }
