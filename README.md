@@ -26,4 +26,4 @@ O simulador segue a regra de que o escudo mitiga o dano na vida:
 `Dano na vida = Dano x (1 - Mitigação)`
 
 ---
-*Feito por Alt_BR, inspirado no app criado pelo HADOMANCER*
+*Feito por Alt_BR*
