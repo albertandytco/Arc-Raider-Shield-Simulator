@@ -22,7 +22,7 @@ Este é um simulador de dano em tempo real para o jogo **Arc Raiders**, projetad
 
 ## 📝 Lógica de Dano
 
-O simulador segue a regra de que o escudo mitiga o dano na vida:
+O simulador segue a regra de que o escudo mitiga o dano na vida: 
 `Dano na vida = Dano x (1 - Mitigação)`
 
 ---
